@@ -32,7 +32,7 @@ loadSprite('cloud', 'cloud.png')
 loadSprite('cactus', 'cactus.png')
 loadSprite('jumper', 'jumper.png')
 loadSprite('water', 'water.png')
-loadSprite('dwater', 'water2.png')
+loadSprite('dwater', 'water2.png') 
 
 
 
