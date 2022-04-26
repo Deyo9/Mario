@@ -85,7 +85,7 @@ scene("game", ({level, score}) => {
         '                                                                   ',
         '                                                                   ',
         '                                                                   ',
-        '                                                                   ',
+        '                                                                   ', 
         '                                                                   ',                              
         'RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR',
         'ššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššš',
