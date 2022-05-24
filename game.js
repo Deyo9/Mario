@@ -56,7 +56,11 @@ loadSprite('car','cah.png')
 loadSprite('portal','portal.png')
 loadSprite('virusblock','virusblock.png')
 loadSprite('virusblocklava','virusblocklava.png')
+loadSprite('pillar', 'pillar.png')
+loadSprite('pillar2', 'pillar2.png')
+loadSprite('podium','podium.png')
 loadSprite('lava','lava.png')
+loadSprite('door','door.png')
 
 
 
@@ -88,7 +92,7 @@ scene("game", ({level, score}) => {
         '                                                                   ',
         '                                                                   ',
         '                                                                   ',
-        '                                                    ž              ',
+        '                                                                   ',
         '                                                                   ',
         'MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM',
         'mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm',
@@ -97,7 +101,7 @@ scene("game", ({level, score}) => {
         'mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm',
         'mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm',
     ],
-
+    
 
     [  '                                                                 ',  
        '                          c                              c       ',
@@ -323,6 +327,32 @@ scene("game", ({level, score}) => {
         'ššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššš',
         'ššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššš',
         'ššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššš',
+], 
+ [
+    '                                                                      ',
+    '                                                                      ',
+    '                                                                      ',
+    '                                                      %               ',
+    '                                                                      ',
+    '                                                                      ',
+    '                                                                 1    ',
+    '                                                                      ',
+    '                                              %                       ',
+    '                                                                      ',
+    '                                                              Dnnnnnnn',
+    '                        %                             D       p       ',
+    '                                                      p       p       ',
+    '             nnnn             D                   r   p       p       ',
+    '          D            nnn    p       D       D       p       p       ',
+    '     D    p        D          p       p       p       p       p       ',
+    '     p    p        p          p       p       p       p       p       ',
+    '     p    p        p          p       p       p       p       p   ž                            ž                               ž                                ž                              ž                         ž                               ž',
+    'nnnnnMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM',
+    'mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm',
+    'mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm',
+    'mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm',
+    'mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm',
+    'mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm',
 ],
 
   ] 
@@ -377,9 +407,13 @@ scene("game", ({level, score}) => {
        'đ': [sprite('truck3'),solid()],
        'č': [sprite('suprise'),'instdeath'],
        'P': [sprite('portal'),'portal'],
-       'M': [sprite('virusblocklava'),solid()],
-       'm': [sprite('virusblock'),solid()],
+       'M': [sprite('virusblocklava'),'instdeath',scale(2)],
+       'm': [sprite('virusblock')],
+       'p': [sprite('pillar'),solid()],
+       'D': [sprite('pillar2'),solid(),scale(1)],
+       'n': [sprite('podium'),solid()],
        'ž': [sprite('lava'),'danger'],
+       '1': [sprite('door'),scale(2),'door'],
         }
 
     
@@ -561,6 +595,15 @@ scene("game", ({level, score}) => {
 
     player.collides('pipe', () =>{
         keyPress('down', () =>{
+            go('game', {
+                level: (level + 1) % maps.length,
+                score: scoreLabel.value
+            })
+        })
+    })
+
+    player.collides('door', () =>{
+        keyPress('up', () =>{
             go('game', {
                 level: (level + 1) % maps.length,
                 score: scoreLabel.value
