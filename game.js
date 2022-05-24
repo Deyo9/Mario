@@ -23,7 +23,7 @@ loadSprite('qblock', 'https://raw.githubusercontent.com/Deyo9/Mario/main/qblock.
 loadSprite('dirt','https://raw.githubusercontent.com/Deyo9/Mario/main/dirt.png')
 loadSprite('tree', 'https://raw.githubusercontent.com/Deyo9/Mario/main/tree.png')
 loadSprite('redguy', 'https://raw.githubusercontent.com/Deyo9/Mario/main/redguy.png')
-loadSprite('invizb', 'invizb.png')
+loadSprite('invizb', 'https://raw.githubusercontent.com/Deyo9/Mario/version-2.0.0/invizb.png')
 loadSprite('sandb', 'https://raw.githubusercontent.com/Deyo9/Mario/main/sandblock.png')
 loadSprite('sands', 'https://raw.githubusercontent.com/Deyo9/Mario/main/sandstone.png')
 loadSprite('cloudg', 'https://raw.githubusercontent.com/Deyo9/Mario/main/cloudgreen.png')
