@@ -32,7 +32,6 @@ loadSprite('cactus', 'https://raw.githubusercontent.com/Deyo9/Mario/main/cactus.
 loadSprite('jumper', 'https://raw.githubusercontent.com/Deyo9/Mario/main/jumper.png')
 loadSprite('water', 'https://raw.githubusercontent.com/Deyo9/Mario/main/water.png')
 loadSprite('dwater', 'https://raw.githubusercontent.com/Deyo9/Mario/main/water2.png') 
-loadSprite('car','cah.png')
 loadSprite('road','road.png')
 loadSprite('road2','road2.png')
 loadSprite('smortgoomba','smortgoomba.png')
@@ -53,6 +52,12 @@ loadSprite('mario-party','marioemote1.png')
 loadSprite('mario-flex','marioemote2.png')
 loadSprite('mario-cowboy','marioemote3.png')
 loadSprite('meteor','fireball2.png')
+loadSprite('car','cah.png')
+loadSprite('portal','portal.png')
+loadSprite('virusblock','virusblock.png')
+loadSprite('virusblocklava','virusblocklava.png')
+loadSprite('lava','lava.png')
+
 
 
 
@@ -64,41 +69,36 @@ loadSprite('meteor','fireball2.png')
 scene("game", ({level, score}) => {
    layers(['bg','obj','ui'], 'obj')
 
-   const maps = [
-       [
-        '                                                                   ',
-        '                                                                 ',
-        '                                                                   ',
-        '                                                                   ',
-        '                                                                ',
-        '                                                                   ',
-        '                                                                   ',
-        '                                                                 ',
+   const maps = [      
+   
+    [
         '                                                                   ',
         '                                                                   ',
         '                                                                   ',
-        '                                                                  ',
         '                                                                   ',
         '                                                                   ',
         '                                                                   ',
-        '                                                                  ',
         '                                                                   ',
         '                                                                   ',
         '                                                                   ',
-        '                                                                   ', 
-        '                                                                   ',                              
-        'RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR',
-        'ššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššš',
-        'ššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššš',
-        'ššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššš',
-        'ššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššš',
-        'ššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššš',
-        'ššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššš',
-        
+        '                                                                   ',
+        '                                                                   ',
+        '                                                                   ',
+        '                                                                   ',
+        '                                                                   ',
+        '                                                                   ',
+        '                                                                   ',
+        '                                                    ž              ',
+        '                                                                   ',
+        'MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM',
+        'mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm',
+        'mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm',
+        'mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm',
+        'mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm',
+        'mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm',
+    ],
 
-       ],
-      
- 
+
     [  '                                                                 ',  
        '                          c                              c       ',
        '   c                                                             ',
@@ -109,12 +109,12 @@ scene("game", ({level, score}) => {
        '     c                                                           ',  
        '                          c                                      ',
        '                                                                 ',
-       '        $$$$$$                                j                  ',
-       '              $                                     r            ',
+       '        $$$$$$                                                   ',
+       '              $                               _     r            ',
        '       €###%###        $$$$$        €##       =                  ',
        '                      $     $                =Ł                  ', 
        '                                            =ŁŁ            -+    ',
-       '   t    t     t    !           t     t     =ŁŁŁ   t _      ()    ',
+       '   t    t     t    !           t     t     =ŁŁŁ   t        ()    ',
        '=======================     ===============ŁŁŁŁ==============    ',
        'ŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁ     ŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁ    ',
        'ŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁ     ŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁ    ',
@@ -128,8 +128,8 @@ scene("game", ({level, score}) => {
        '                                     ŁŁ                          ',
        '    c                                ŁŁ       c                  ',
        '                              c      ŁŁ                          ',
-       '                                     ŁŁ                    c     ',
-       '                c    i               ŁŁ      c     c             ',
+       '                     i               ŁŁ                    c     ',
+       '                c                    ŁŁ      c     c             ',
        '          $$$                        ŁŁ                          ',
        '                                  r  ŁŁ                          ',
        '  c                 ####             ==          c        c      ',
@@ -169,19 +169,19 @@ scene("game", ({level, score}) => {
         'ŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁ    ŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁ',
 
     ],
-    [
+    [   '                          S                                      ',
         '                          sS                                     ',
         '            C          $$$ sS           C                   r    ',
         '   C          r             s                                    ',
-        '                            s   ##            j   _ C            ',
+        '                            s   ##                _ C            ',
         '         C     C            s    C        sssssssssssss          ',
         '                      ##€## sS                                   ',
-        '   C                 C      ss      s                      C     ',
-        '              SSS                   s      $ $ $ $ $             ',
+        '   C                 C      ss                             C     ',
+        '              SSS                   S      $ $ $ $ $             ',
         '     %       Ssss                  ss                            ',
         '      H     Ss              H       s                H     -+    ',
-        '      H    Ss      H        H       s        !       H     ()    ',
-        'SSSSSSSSSSSSsssssSSSSSSSSSSSSSSSSSSSsSSSSSSSSSSSSSSSSSSSSSSSSSSSS',
+        '      H    Ss      H        H       s        !       H  j  ()    ',
+        'SSSSSSSSSSSssssssSSSSSSSSSSSSSSSSSSSsSSSSSSSSSSSSSSSSSSSSSSSSSSSS',
         'sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss',
         'sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss',
         'sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss',
@@ -279,7 +279,7 @@ scene("game", ({level, score}) => {
         '       ##%##                                  $$$$$            -+                    ',
         '                    F                        $                 ()                    ',
         '                                            $   #   đ                                ',
-        '                 !                          _   F                                    ',
+        '                 g                          _   F                                    ',
         'ß                                                                                    ',
         '                            Đ                                                        ',
         '                                                                                     ',
@@ -299,27 +299,32 @@ scene("game", ({level, score}) => {
         'ššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššš',
         'ššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššš',
     ],
+    [   '                                                     IIII         I  ',
+        '                                                        I         I  ',
+        '                            i      C             C      I         I  ',
+        '                                         F              I         I  ',
+        '                   C               $$                   I         I  ',
+        '        C                            $       C          I  F      I  ',
+        '                          ######  ##  $                 I         I                      F ',
+        '                          BBBBBBBBB########  #######BB###IIIIIIIIIIIIIIIIIIIIII ',
+        '                          BBBBBBBBB########  ###BBGBBBGB#            ',  
+        '        BBBBBBBBBB        BBBBBB###########$$$$#BBBBBBBB#            ',  
+        '        BBBBBBBGBB   F    BBBBBBBBB########$$$$#BBBBBGBB#   C        F',  
+        '   C    BBGBBBBBBB        BBBBBBBBB########$$$$##BB######            ',  
+        '        BBBBBBGBBB        ####BBBBB#############BBBBBBGB#            ',  
+        '        BBGBBBBBBB        BBBBBBBBB#############BBBBBBBB#      P     ',  
+        '        BBBBBBBGBB        BBBBBBBBB##################BB##            ',  
+        '        BBBGBBBBBB    C   BBBBB#################BBBBBBGB#            ',  
+        '        BBBBBBBBBB        BBBB#BBBB#############BGBBBBBB#  F         ',  
+        '        BBBBBBBBBB    f   BBB#BBBBB#############BBBBBBBBB            ',
+        'RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR',
+        'ššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššš',
+        'ššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššš',
+        'ššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššš',
+        'ššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššš',
+        'ššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššššš',
+],
 
-    [
-      '                                           ',
-      '                                           ',
-      '                                           ',
-      '                                           ',
-      '                                           ',
-      '         $    $    $   $   $               ',
-      '         $    $        $$  $               ',
-      '         $    $    $   $ $ $               ',
-      '         $  $ $    $   $  $$               ',
-      '          $  $     $   $   $               ',
-      '                                           ',
-      '===========================================',
-      'ŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁ',
-      'ŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁ',
-      'ŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁ',
-      'ŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁ',
-      'ŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁ',
-      'ŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁŁ',  
-    ]
   ] 
       
        
@@ -348,6 +353,7 @@ scene("game", ({level, score}) => {
        't': [sprite('tree') ],
        'r': [sprite('redguy'), 'danger'],
        'i': [sprite('invizb'),solid(),'coin-qblock'],
+       'I': [sprite('invizb'),solid()],
        'S': [sprite('sands'), solid()],
        's': [sprite('sandb'), solid()],
        'c': [sprite('cloudg')],
@@ -370,8 +376,11 @@ scene("game", ({level, score}) => {
        'Đ': [sprite('truck2'),solid()],
        'đ': [sprite('truck3'),solid()],
        'č': [sprite('suprise'),'instdeath'],
-       '0': [sprite('meteor'),'fall',scale(10)],
-    }
+       'P': [sprite('portal'),'portal'],
+       'M': [sprite('virusblocklava'),solid()],
+       'm': [sprite('virusblock'),solid()],
+       'ž': [sprite('lava'),'danger'],
+        }
 
     
 
@@ -424,7 +433,7 @@ scene("game", ({level, score}) => {
 
    const player = add([
      sprite('mario'), solid(),
-     pos(30,6),
+     pos(50,200),
      body(),
      big(),
      origin('bot')  
@@ -538,7 +547,7 @@ scene("game", ({level, score}) => {
        }
    })
 
-    const MOVE_SPEED = 120
+    const MOVE_SPEED = 130
     const CLOUD_MOVE_SPEED= 169
     const BIG_MOVE_SPEED= 200
     const JUMP_FORCE = 400
@@ -553,12 +562,18 @@ scene("game", ({level, score}) => {
     player.collides('pipe', () =>{
         keyPress('down', () =>{
             go('game', {
-                level: (level+1),
+                level: (level + 1) % maps.length,
                 score: scoreLabel.value
             })
         })
     })
-
+   
+    player.collides('portal', () =>{
+            go('game', {
+                level: (level + 1) % maps.length,
+                score: scoreLabel.value
+            })
+    })
     
     keyDown('left', ()=> {
         player.changeSprite('mario-going-left')
