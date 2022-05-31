@@ -61,6 +61,10 @@ loadSprite('pillar2', 'pillar2.png')
 loadSprite('podium','podium.png')
 loadSprite('lava','lava.png')
 loadSprite('door','door.png')
+loadSprite('king','king.png')
+loadSprite('mmushroom','https://raw.githubusercontent.com/Deyo9/Mario/main/mushroom.png')
+loadSprite('heart','heart.png')
+loadSprite('moveplatform','podium.png')
 
 
 
@@ -76,30 +80,30 @@ scene("game", ({level, score}) => {
    const maps = [      
    
     [
-        '                                                                   ',
-        '                                                                   ',
-        '                                                                   ',
-        '                                                                   ',
-        '                                                                   ',
-        '                                                                   ',
-        '                                                                   ',
-        '                                                                   ',
-        '                                                                   ',
-        '                                                                   ',
-        '                                                                   ',
-        '                                                                   ',
-        '                                                                   ',
-        '                                                                   ',
-        '                                                                   ',
-        '                                                                   ',
-        '                                                                   ',
-        '                                                                   ',
-        'MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM',
-        'mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm',
-        'mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm',
-        'mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm',
-        'mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm',
-        'mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm',
+        '                                 I                      ',
+        '                          5      I                      ',
+        '                                 I                      ',
+        '          K                      I                      ',
+        '                                 I                      ',
+        '                                 I                     ',
+        '                                 I                      ',
+        '                                 I                      ',
+        '                                 I                      ',
+        '                                 I                      ',
+        '                                 I                                       r                                   r                               r                    r                     r                  r                r                 r               r              r                r              r               r           ',
+        '                          nn     I                      ',
+        '                                 I                           r                           r                             r                             r                             r                         r                          r                            r                       r                                 r  ',
+        '                                 I                                                                                                                                                                                                                                                                                                        4  ',
+        '6666666                 nnnnnn   I                       ',
+        '                                 I                                           r                                                            r                                                   r                       r                                  r                                                 r    ',
+        '                                 I                                                           ž                                                                         ž                                                      ž                                                                      ž                                                    ž                                                                ž                                              ž                                                                     ž                       ',
+        '                     nnnnnnnnnnnnI                      ',
+        'MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM',
+        'mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm',
+        'mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm',
+        'mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm',
+        'mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm',
+        'mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm',
     ],
     
 
@@ -377,6 +381,7 @@ scene("game", ({level, score}) => {
        '!': [sprite('goomba'), 'enemy',body()],
        '_': [sprite('goomba1'),'enemy',body()],
        '*': [sprite('mushroom'), 'mushroom',body()],
+       '4': [sprite('mmushroom'),'mmushroom',scale(2)],
        '€': [sprite('qblock'), solid(), 'coin-qblock'],
        '&': [sprite('hitblock'),solid()],
        'Ł': [sprite('dirt'), solid()],
@@ -414,6 +419,9 @@ scene("game", ({level, score}) => {
        'n': [sprite('podium'),solid()],
        'ž': [sprite('lava'),'danger'],
        '1': [sprite('door'),scale(2),'door'],
+       'K': [sprite('king'),scale(5)],
+       '5': [sprite('heart'),scale(2),'portal'],
+       '6': [sprite('moveplatform'),solid(),'zplatform'],
         }
 
     
@@ -481,6 +489,7 @@ scene("game", ({level, score}) => {
         b.move(-JUMPER_SPEED,0)
    })
 
+
    action('vehicle', (v)=>{
        v.move(-BIG_MOVE_SPEED,0)
    })
@@ -489,13 +498,17 @@ scene("game", ({level, score}) => {
        s.move(-CLOUD_MOVE_SPEED,0)
    })
 
+   action('zplatform', (z)=>{
+       z.move(50,0.000001)
+   })
+
    action('mushroom', (m)=>{
        m.move(35,0)
    })
 
-   action('speedmushroom', (s)=>{
-       s.move(35,0)
-   })
+   action('mmushroom', (m)=>{
+    m.move(-90,0)
+})
 
    action('enemy' , (e)=>{
        e.move(-ENEMY_SPEED,0)
@@ -544,6 +557,10 @@ scene("game", ({level, score}) => {
     
    })
 
+   player.collides('rage', (r)=>{
+       go('lose', {score:scoreLabel.value})
+   })
+
    player.collides('danger', (d)=>{
        go('lose', {score:scoreLabel.value})
    })
@@ -566,6 +583,13 @@ scene("game", ({level, score}) => {
        player.biggify(5)
    })
 
+   player.collides('mmushroom', (m)=>{
+    destroy(m)
+    player.biggify(5)
+})
+
+   
+
    
 
    player.collides('coin', (c)=> {
@@ -581,6 +605,8 @@ scene("game", ({level, score}) => {
        }
    })
 
+   
+
     const MOVE_SPEED = 130
     const CLOUD_MOVE_SPEED= 169
     const BIG_MOVE_SPEED= 200
@@ -592,6 +618,7 @@ scene("game", ({level, score}) => {
     const JUMPER_SPEED= 69
     let isJumping= true
     const VOID_DEATH= 1000
+    
 
     player.collides('pipe', () =>{
         keyPress('down', () =>{
