@@ -64,22 +64,46 @@ loadSprite('king','https://raw.githubusercontent.com/Deyo9/Mario/version-2.0.0/k
 loadSprite('mmushroom','https://raw.githubusercontent.com/Deyo9/Mario/main/mushroom.png')
 loadSprite('heart','https://raw.githubusercontent.com/Deyo9/Mario/version-2.0.0/heart.png')
 loadSprite('moveplatform','https://raw.githubusercontent.com/Deyo9/Mario/version-2.0.0/podium.png')
+loadSprite('mrwaldoa','mrwaldoa.png')
+loadSprite('pressspace','pressspace.png')
 
 
 
 
-
-
-
-
-
-scene("game", ({level, score}) => {
+ scene("game", ({level, score}) => {
    layers(['bg','obj','ui'], 'obj')
 
    const maps = [      
    
   
-    
+    [
+        'I I',
+        'I I',
+        'I I',
+        'I I',
+        'I I',
+        'I8I',
+        'I I',
+        'I I',
+        'I I',
+        'I I',
+        'I I',
+        'I I',
+        'I I',
+        'I I',
+        'I I',
+        'I I',
+        'I I',
+        'I I',
+        'I I',
+        'I I',
+        'I I',
+        'III',
+        'I I',
+        'I I',
+        'I I',
+        'I7I',
+    ],
 
     [  '                                                                 ',  
        '                          c                              c       ',
@@ -360,6 +384,7 @@ scene("game", ({level, score}) => {
 ],
 
   ] 
+
       
        
 
@@ -422,10 +447,12 @@ scene("game", ({level, score}) => {
        'K': [sprite('king'),scale(5)],
        '5': [sprite('heart'),scale(2),'portal'],
        '6': [sprite('moveplatform'),solid(),'zplatform'],
+       '7': [sprite('pressspace')],
+       '8': [sprite('mrwaldoa')],
         }
 
     
-
+       
 
    const gameLevel = addLevel(maps[level],levelCfg)
   
@@ -478,7 +505,7 @@ scene("game", ({level, score}) => {
      pos(50,200),
      body(),
      big(),
-     origin('bot')  
+     origin('bot') 
    ])
 
    action('bad', (b)=>{
@@ -499,7 +526,7 @@ scene("game", ({level, score}) => {
    })
 
    action('zplatform', (z)=>{
-       z.move(50,0.000001)
+       z.move(50,0.00000001)
    })
 
    action('mushroom', (m)=>{
@@ -556,6 +583,7 @@ scene("game", ({level, score}) => {
        }
     
    })
+
 
    player.collides('rage', (r)=>{
        go('lose', {score:scoreLabel.value})
@@ -656,6 +684,15 @@ scene("game", ({level, score}) => {
     })
 
     keyDown('space', ()=> {
+        if (level == 0){
+
+            go('game', {
+                level: (level+1) % maps.length,
+                score: 0
+            })
+            
+        }
+
         if (player.grounded()){
             isJumping = true
             player.jump(CURRENT_JUMP_FORCE)
@@ -664,12 +701,9 @@ scene("game", ({level, score}) => {
         
     })
 
+
     keyPress('down', ()=>{
         player.changeSprite('mario-crouching')
-    })
-
-    keyPress('up', ()=>{
-        player.changeSprite('mario')
     })
 
     keyPress('1', ()=>{
@@ -682,6 +716,18 @@ scene("game", ({level, score}) => {
 
     keyPress('3', ()=>{
         player.changeSprite('mario-cowboy')
+    })
+
+    keyRelease('left',()=>{
+        player.changeSprite('mario')
+    })
+
+    keyRelease('right',()=>{
+        player.changeSprite('mario')
+    })
+
+    keyRelease('down',()=>{
+        player.changeSprite('mario')
     })
 
 })
