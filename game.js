@@ -68,7 +68,7 @@ loadSprite('mrwaldoa','mrwaldoa.png')
 loadSprite('pressspace','pressspace.png')
 
 
-
+ scene()
 
  scene("game", ({level, score}) => {
    layers(['bg','obj','ui'], 'obj')
@@ -77,32 +77,32 @@ loadSprite('pressspace','pressspace.png')
    
   
     [
-        'I I',
-        'I I',
-        'I I',
-        'I I',
-        'I I',
-        'I8I',
-        'I I',
-        'I I',
-        'I I',
-        'I I',
-        'I I',
-        'I I',
-        'I I',
-        'I I',
-        'I I',
-        'I I',
-        'I I',
-        'I I',
-        'I I',
-        'I I',
-        'I I',
-        'III',
-        'I I',
-        'I I',
-        'I I',
-        'I7I',
+        'I                                                 I',
+        'I                                                 I',
+        'I                                                 I',
+        'I                                                 I',
+        'I                                                 I',
+        'I8                                                I',
+        'I                                                 I',
+        'I                                                 I',
+        'I                                                 I',
+        'I                                                 I',
+        'I                                                 I',
+        'I                                                 I',
+        'I                                                 I',
+        'I                                                 I',
+        'I                                                 I',
+        'I                                                 I',
+        'I                                                 I',
+        'I                                                 I',
+        'I                                                 I',
+        'I                                                 I',
+        'I                                                 I',
+        'IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII',
+        'I                                                 I',
+        'I                                                 I',
+        'I                                                 I',
+        'I7I                                                ',
     ],
 
     [  '                                                                 ',  
@@ -505,7 +505,7 @@ loadSprite('pressspace','pressspace.png')
      pos(50,200),
      body(),
      big(),
-     origin('bot') 
+     origin('bot')
    ])
 
    action('bad', (b)=>{
@@ -569,12 +569,6 @@ loadSprite('pressspace','pressspace.png')
        }
    })
     
-   player.action(()=>{
-       if(player.grounded()){
-           isJumping = false
-       }
-   })
-
    player.collides('enemy', (e)=>{
        if(isJumping){
          destroy(e)
@@ -615,10 +609,6 @@ loadSprite('pressspace','pressspace.png')
     destroy(m)
     player.biggify(5)
 })
-
-   
-
-   
 
    player.collides('coin', (c)=> {
        destroy(c)
